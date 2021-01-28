@@ -9,12 +9,19 @@
 </head>
 <body>
     <h1>CORS Test</h1>
-    <p>Here we're testing the Rules engine to see if we can play videos from the correct origin, but not the specified page</p>
+    <a href="./index.html">Return Home</a>
     <video id="vid1" class="azuremediaplayer amp-default-skin" autoplay controls width="640" height="400" poster="poster.jpg" data-setup='{"nativeControlsForTouch": false}'>
         <source src="https://nondefault-zachtest-usea.streaming.media.azure.net/91fd43a3-b960-4cc8-a088-5f6c756c1068/SampleVideo_1280x720_10mb.ism/manifest" type="application/vnd.ms-sstr+xml" />
         <p class="amp-no-js">
             To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
         </p>
     </video>
+    <p>I put this page together to explain a few things about utilizing the Rules engine for setting responses based on CORS.</p>
+    <p>It's important to note that there are a few specific instances where it might look like the rules engine isn't working.</p>
+    <p>For instance, if the video is cached, it will play all cached content, even when not coming from the correct origin point.</p>
+    <p>If you notice that the video is playing where it's not supposed to be, try a hard reset by pressing Ctrl + Shift + R.</p>
+
+    <h2>Live Stream Test</h2>
+    
 </body>
 </html>

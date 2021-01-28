@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Azure Media Player</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//amp.azure.net/libs/amp/latest/skins/amp-default/azuremediaplayer.min.css" rel="stylesheet">
+    <script src="//amp.azure.net/libs/amp/latest/azuremediaplayer.min.js"></script>
+    <script>
+        var playlist = [
+            "//testerx-zjonestemp-usea.streaming.media.azure.net/b3705ed2-cade-45fc-bd40-180dac8bba2e/sample1.ism/manifest",
+            "//testerx-zjonestemp-usea.streaming.media.azure.net/f2ee5837-179d-47f1-9f36-ef50208a52d9/m1_03_02.ism/manifest",
+            "//testerx-zjonestemp-usea.streaming.media.azure.net/51b58d14-932f-4528-8f06-3a7ae43e9766/sourceRemix.ism/manifest",
+            "//testerx-zjonestemp-usea.streaming.media.azure.net/872d9da3-c4ad-4cc1-8943-78eb123ce67a/m1_03_02_test.ism/manifest",
+            "//postsms-usw22.streaming.media.azure.net/128b9657-eddd-4a94-b5a2-340424d54b58/m1_03_02_test.ism/manifest",
+            "//testerx-zjonestemp-usea.streaming.media.azure.net/00b09fcf-8262-49c5-9843-70768f2ab373/sample3.ism/manifest",
+            "//testerx-zjonestemp-usea.streaming.media.azure.net/cff09f77-28e8-49d3-b3da-06136bd08fea/file_example_MP3_5MG.ism/manifest",
+        ];
+    	var currentItem = 0;
+    </script>
+</head>
+<body>
+    <h1>Sample playlist</h1>
+    <video id="azuremediaplayer" class="azuremediaplayer amp-default-skin amp-big-play-centered" controls autoplay width="640" height="400" poster="" data-setup='{}' tabindex="0">
+        <p class="amp-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video</p>
+    </video>    
+    <script>
+        var myOptions = {
+            autoplay: true,
+            controls: true,
+            width: "640",
+            height: "400",
+            poster: ""
+        };
+        var myPlayer = amp("azuremediaplayer", myOptions);
+        myPlayer.addEventListener(amp.eventName.ended, _ampEndedHandler);
+        console.log("This should be working")
+        myPlayer.src([{ src: playlist[currentItem], type: "application/vnd.ms-sstr+xml" } ]);
+        
+        function _ampEndedHandler(evt) {
+            if(currentItem < playlist.length - 1){
+                currentItem++;
+                myPlayer.src([{ src: playlist[currentItem], type: "application/vnd.ms-sstr+xml" } ]);
+                console.log("Continuing playlist");
+            }
+            console.log("ampEnding event")
+        }
+    </script>
+</body>
+</html>
